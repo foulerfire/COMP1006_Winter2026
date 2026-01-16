@@ -1,19 +1,21 @@
-<?php 
-
+<?php
 declare(strict_types=1);
 
-$host = "localhost"; 
-$db = "test_connection"; 
-$user = "root"; 
-$pass = ""; 
+$host = "localhost";//host name
+$db = "week2";//database name
+$user = "root";//username
+$password = "";//password
 
-$dsn = "mysql:host=$host;dbname=$db";
+$dsn = "mysql:host=$host;dbname=$db";//points to database
 
-try {
- $pdo = new PDO($dsn, $user, $pass); 
- $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
- echo "Connected to the database! Yay!"; 
+//try to connect, if connected echo a yay message
+try{
+    $pdo = new PDO ($dsn, $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    echo "<p> Yay Connected! </p>";
+
 }
-catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+//what happens if there is an error connecting
+catch(PDOException $e){
+    die("database connection failed: " . $e->getMessage());
 }
