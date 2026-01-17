@@ -3,7 +3,7 @@
 require "header.php"; 
 require_once "car.php";
 require_once "connect.php";
-require "footer.php"; 
+
 // create a new Car object
 $myCar = new Car("Toyota", "Matrix", 2014);
 
@@ -11,7 +11,7 @@ $myCar = new Car("Toyota", "Matrix", 2014);
 echo "<h2>Car Information</h2>";
 echo $myCar->getCarInfo();
 
-
+require "footer.php"; 
 
 /*
 I found creating the Car class and displaying the object information
