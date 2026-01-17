@@ -3,7 +3,7 @@
 class car{
     
 //variable sfor car
-    public string $make; /
+    public string $make; 
     public string $model;
     public int $year;
     
