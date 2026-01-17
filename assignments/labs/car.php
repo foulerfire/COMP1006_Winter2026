@@ -6,6 +6,14 @@ class car{
     public string $model;
     public int $year;
 
+    public function __construct(string $make, string $model, int $year){
+        $this-> make = $make;
+        $this-> model = $model;
+        $this-> year = $year;
+    }
+
+  
+}
 
 
 // Lab One Instructions: 
