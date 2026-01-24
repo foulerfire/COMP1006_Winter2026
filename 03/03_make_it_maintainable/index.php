@@ -1,15 +1,3 @@
-<?php
-/* What's the Problem? 
-    - PHP logic + HTML in one file
-    - Works, but not scalable
-    - Repetition will become a problem
-
-    How can we refactor this code so it’s easier to maintain?
-*/
-
-$items = ["Home", "About", "Contact"];
-
-?>
 
 <!DOCTYPE html>
 <html>
@@ -19,16 +7,19 @@ $items = ["Home", "About", "Contact"];
 <body>
 
 <h1>Welcome</h1>
-
-<ul>
-<?php foreach ($items as $item): ?>
-    <li><?= $item ?></li>
-<?php endforeach; ?>
-</ul>
+<?php
+/*
+In this weeks lab I learned that seperating reusable PHP into its own includes files make scaling and maintaining a website easier. In course project phase one I plan to keep this in mind when creating my file structure.
+*/
+require_once "nav.php";?>
 
 <footer>
     <p>&copy; 2026</p>
 </footer>
 
 </body>
+
+
 </html>
+
+
