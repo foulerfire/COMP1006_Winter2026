@@ -1,5 +1,4 @@
 <?php //start file for lab3   ?>
-
 <main>
     <h2> Bake It Till You Make It - Contact Form     </h2>
     
@@ -12,9 +11,9 @@
         <label for="last_name">Last name</label> 
         <input type="text" id="last_name" name="last_name" required>
         
-        <br> <label for="email">Email</label> </br>
+        <br> <label for="email">Email</label> 
         <input type="email" id="email" name="email" required>
-        <!-- message input box, not a required to be filled out -->
+        <!-- message input box required to be filled out -->
         <p>
             <label for="message">Message</label><br>
             <textarea id="message" name="message" rows="4"

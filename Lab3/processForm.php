@@ -27,6 +27,8 @@ if ($email=== null || $email === ''){
 if ($message === null || $message === ''){
     $errors[] = "Message is required";
 }
+
+// display validation errors and stop execution if any exist
 //loop throuhg error messages
 if (!empty($errors)) {
     echo "<ul>";
@@ -47,7 +49,3 @@ if (!empty($errors)) {
 ?>
 
 </main>
-
-
-
-
