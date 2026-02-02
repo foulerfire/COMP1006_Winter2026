@@ -4,6 +4,10 @@ $firstName = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHAR
 $lastName  = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
+$to = "info@bakery.com";
+$subject = "Contact Info";
+$message = "Name: " . $firstName . "" . $lastName . " | Email: " . $email;
+
 
 //validate serverside
 $errors = [];

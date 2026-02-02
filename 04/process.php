@@ -82,5 +82,5 @@ if(!empty($errors)){
     </ul>   
 
 </main>
-
+<?php mail($to, $subject, $message); ?>
 <?php require "includes/footer.php"; ?> 
