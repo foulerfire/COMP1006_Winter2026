@@ -1,6 +1,6 @@
 <?php 
 $host = "localhost"; //hostname
-$db = "bitumi"; //database name
+$db = "bakeit"; //database name
 $user = "root"; //username
 $password = ""; //password
 
@@ -12,7 +12,7 @@ try {
    $pdo = new PDO ($dsn, $user, $password); 
    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 }
-//what happens if there is an error connecting 
+//what happens if there is an error connecting for development only, we dont want users to see the errors
 catch(PDOException $e) {
     die("Database connection failed: " . $e->getMessage()); 
 }

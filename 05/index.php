@@ -7,20 +7,22 @@
     <!-- Step One - Add Client Side Validation with HTML Attributes -->
     <fieldset>
       <legend>Customer Information</legend>
-        <label for="first_name">First name</label>
-        <input type="text" id="first_name" name="first_name">
-        <label for="last_name">Last name</label>
-        <input type="text" id="last_name" name="last_name">
-        <label for="phone">Phone number</label>
-        <input type="tel" id="phone" name="phone" placeholder="555-123-4567">
-        <label for="address">Address</label>
-        <input type="text" id="address" name="address">
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email">
+        <label for="first_name" class="form-label">First name</label>
+        <input type="text" id="first_name" name="first_name" class="form-control">
+        <label for="last_name" class="form-label">Last name</label>
+        <input type="text" id="last_name" name="last_name" class="form-control">
+        <label for="phone" class="form-label">Phone number</label>
+        <input type="tel" id="phone" name="phone" placeholder="555-123-4567" class="form-control">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" id="address" name="address" class="form-control">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" id="email" name="email" class="form-control">
     </fieldset>
+    
+
 
     <!-- Order Details -->
-    <fieldset>
+    <!-- <fieldset>
       <legend>Order Details</legend>
 
       <p>
@@ -90,7 +92,7 @@
       </table>
 
     </fieldset>
-
+-->
     <fieldset>
       <legend>Additional Comments</legend>
 
@@ -102,7 +104,7 @@
     </fieldset>
 
     <p>
-      <button type="submit">Place Order</button>
+      <button type="submit" class="btn btn-primary">Place Order</button>
     </p>
 
   </form>

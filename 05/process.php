@@ -1,17 +1,20 @@
 <?php
 
+//require database connection script
 require "includes/connect.php";  
+ 
 
-/*1*/
+
+/*1 checks how form was sent if invalid kills it*/
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
 }
 
-/*2*/
+/*2 sanitizing data */
 $firstName = trim(filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS));
 $lastName  = trim(filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS));
 $email     = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-$phone     = trim(filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS));
+$phone     = trim(filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS)); //trim filters out whitespace
 $address   = trim(filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS));
 $comments  = trim(filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_SPECIAL_CHARS));
 
@@ -66,10 +69,35 @@ if (!empty($errors)) {
     exit;
 }
 
-/*4*/
+/*4 build and prepare query*/
+
+//build query using named placeholders
+$sql = "INSERT INTO orders (first_name, last_name, phone, address, email, comments) VALUES (:first_name, :last_name, :phone, :address, :email, :comments)";
+
+//prepare the query
+$stmt = $pdo ->prepare($sql);
+
+//map the named placeholder to the user data/actual data
+$stmt->bindParam(':first_name', $firstName);
+$stmt->bindParam(':last_name',  $lastName);
+$stmt->bindParam(':phone',      $phone);
+$stmt->bindParam(':address',    $address);
+$stmt->bindParam(':email',      $email);
+$stmt->bindParam(':comments',   $comments);
+
+
+// execute the query
+$stmt->execute();
+//close the connection
+$pdo = null;
 
 
 ?>
+
+
+
+
+
 <? require "includes/header.php"; ?> 
 <div class="alert alert-success">
     <h1>Thank you for your order, <?= htmlspecialchars($firstName) ?>!</h1>
