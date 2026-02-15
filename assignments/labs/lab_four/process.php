@@ -15,7 +15,10 @@ $sql = "INSERT INTO subscribers (first_name, last_name, email)
 //   2. Prepare the statement
 $statement = $db->prepare($sql);
 //   3. Execute the statement with an array of values
-
+$statement->execute([
+    "first_name" => $firstName,
+    "last_name"  => $lastName,
+    "email"      => $email
 ]);
 
 
