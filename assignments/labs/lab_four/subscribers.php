@@ -2,17 +2,18 @@
 //TODO:
 require "includes/connect.php";
 
-/*
-  TODO:
-  1. Write a SELECT query to get all subscribers
-  2. Add ORDER BY subscribed_at DESC
-  3. Prepare the statement
-  4. Execute the statement
-  5. Fetch all results into $subscribers
-*/
 
-$subscribers = []; // placeholder
-?>
+  // TODO:1. Write a SELECT query to get all subscribers
+  // 2. Add ORDER BY subscribed_at DESC
+  $sql = "SELECT * FROM subscribers 
+          ORDER BY subscribed_at DESC";
+  // 3. Prepare the statement
+  // 4. Execute the statement
+  // 5. Fetch all results into $subscribers
+$statement = $db->prepare($sql);
+$statement->execute();
+$subscribers = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 
 <main class="container mt-4">
   <h1>Subscribers</h1>
