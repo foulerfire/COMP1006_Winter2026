@@ -4,18 +4,22 @@
 require "includes/connect.php";
 
 //   TODO: Grab form data (no validation or sanitization for this lab)
-
-/*
-  1. Write an INSERT statement with named placeholders
-  2. Prepare the statement
-  3. Execute the statement with an array of values
-  4.
-
-*/
 $firstName = $_POST["first_name"];
 $lastName  = $_POST["last_name"];
 $email     = $_POST["email"];
 echo $firstName . " " . $lastName . " - " . $email;
+
+//   1. Write an INSERT statement with named placeholders
+$sql = "INSERT INTO subscribers (first_name, last_name, email)
+        VALUES (:first_name, :last_name, :email)";
+//   2. Prepare the statement
+$statement = $db->prepare($sql);
+//   3. Execute the statement with an array of values
+
+]);
+
+
+
 
 ?>
 <!DOCTYPE html>
