@@ -21,9 +21,6 @@ $statement->execute([
     "email"      => $email
 ]);
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +39,6 @@ $statement->execute([
         <!-- TODO: Display a confirmation message -->
         <!-- Example: "Thanks, Name! You have been added to our mailing list." -->
   <?php echo "Thanks, $firstName! You've been added to our mailing list."; ?>
-
 
         <p class="mt-3">
             <a href="subscribers.php">View Subscribers</a>
