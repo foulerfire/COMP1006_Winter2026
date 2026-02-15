@@ -7,7 +7,7 @@ require "includes/connect.php";
 $firstName = $_POST["first_name"];
 $lastName  = $_POST["last_name"];
 $email     = $_POST["email"];
-echo $firstName . " " . $lastName . " - " . $email;
+// echo $firstName . " " . $lastName . " - " . $email;
 
 //   1. Write an INSERT statement with named placeholders
 $sql = "INSERT INTO subscribers (first_name, last_name, email)
@@ -41,6 +41,7 @@ $statement->execute([
 
         <!-- TODO: Display a confirmation message -->
         <!-- Example: "Thanks, Name! You have been added to our mailing list." -->
+  <?php echo "Thanks, $firstName! You've been added to our mailing list."; ?>
 
 
         <p class="mt-3">
