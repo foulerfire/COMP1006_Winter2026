@@ -1,5 +1,5 @@
 <?php
-require "includes/header.php";
+// require "includes/header.php";
 //  TODO: connect to the database 
 require "includes/connect.php";
 
@@ -12,6 +12,10 @@ require "includes/connect.php";
   4.
 
 */
+$firstName = $_POST["first_name"];
+$lastName  = $_POST["last_name"];
+$email     = $_POST["email"];
+echo $firstName . " " . $lastName . " - " . $email;
 
 ?>
 <!DOCTYPE html>
