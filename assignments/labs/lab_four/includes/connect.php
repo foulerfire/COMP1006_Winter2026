@@ -5,4 +5,4 @@ $password = "";
 
 $db = new PDO($dsn, $username, $password);
 
-//echo "Database connected successfully"; //quick check to see if the connect to db was successful 
+//echo "database connected successfully"; //quick check to see if the connect to db was successful 
