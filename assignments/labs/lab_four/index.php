@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
     <main class="container mt-4">
         <h1>Subscribe to Our Mailing List</h1>
 

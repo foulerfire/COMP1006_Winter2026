@@ -32,7 +32,6 @@ $statement->execute([
 </head>
 
 <body>
-
     <main class="container mt-4">
         <h2>Thank You for Subscribing</h2>
 
