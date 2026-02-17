@@ -1,9 +1,5 @@
 <?php
-
-
 //script only runs when form is submitted using submit
-
-
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
 }
@@ -41,7 +37,6 @@ if (!empty($errors)) {
 
 require "includes/connect.php";
 //insert player data in to table
-
 $sql = "
 INSERT INTO players
 (first_name, last_name, position, email, phone, team_name)
