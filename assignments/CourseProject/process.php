@@ -1,4 +1,6 @@
 <?php
+
+
 //script only runs when form is submitted using submit
 
 
@@ -29,7 +31,7 @@ if ($phone === null || $phone === '')
     $errors[] = "Phone number required";
 if ($team === null || $team === '') 
     $errors[] = "Team name required";
-
+// loops through all errors that occured
 if (!empty($errors)) {
     foreach ($errors as $error) {
         echo "<p>$error</p>";
@@ -38,3 +40,23 @@ if (!empty($errors)) {
 }
 
 require "includes/connect.php";
+//insert player data in to table
+
+$sql = "
+INSERT INTO players
+(first_name, last_name, position, email, phone, team_name)
+VALUES
+(:first, :last, :position, :email, :phone, :team)
+";
+
+$stmt = $db->prepare($sql);
+
+//bind player info
+$stmt->bindValue(':first', $firstName);
+$stmt->bindValue(':last', $lastName);
+$stmt->bindValue(':position', $position);
+$stmt->bindValue(':email', $email);
+$stmt->bindValue(':phone', $phone);
+$stmt->bindValue(':team', $team);
+
+$stmt->execute();
