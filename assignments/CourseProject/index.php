@@ -3,6 +3,7 @@
 <?php
     require "includes/header.php";
 ?>
+<link href="styles/main.css" rel="stylesheet">
 
 <head>
     <meta charset="UTF-8">
@@ -21,15 +22,19 @@
             <label class="form-label mt-3" for="last_name">Last Name</label>
             <input class="form-control" type="text" id="last_name" name="last_name">
 
-            <label class="form-label mt-3" for="last_name">Position</label>
+            <label class="form-label mt-3" for="position">Position</label>
             <input class="form-control" type="text" id="position" name="position">
 
 
             <label class="form-label mt-3" for="email">Email Address</label>
             <input class="form-control" type="email" id="email" name="email">
 
-            <label for="phone" class="form-label">Phone number</label>
+           
+            <label for="phone" class="form-labelmt-3">Phone number</label>
             <input type="tel" id="phone" name="phone" placeholder="555-123-4567" class="form-control">
+
+            <label class="form-label mt-3" for="team">Team Name</label>
+            <input class="form-control" type="text" id="team" name="team">
 
             <button class="btn btn-primary mt-4" type="submit">Subscribe</button>
         </form>
