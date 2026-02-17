@@ -7,7 +7,9 @@
 
 <body>
     <main class="container mt-4">
-        <h1>Please</h1>
+        
+        <!-- Form input for player information -->
+        <h1>Please Enter Your Player Information Here</h1>
 
         <form action="process.php" method="post" class="mt-3">
             <label class="form-label" for="first_name">First Name</label>
@@ -30,7 +32,7 @@
             <label class="form-label mt-3" for="team">Team Name</label>
             <input class="form-control" type="text" id="team" name="team">
 
-            <button class="btn btn-primary mt-4" type="submit">Subscribe</button>
+            <button class="btn btn-primary mt-4" type="submit">Submit</button>
         </form>
 
         <p class="mt-4">
