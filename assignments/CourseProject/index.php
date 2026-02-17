@@ -5,12 +5,6 @@
 ?>
 <link href="styles/main.css" rel="stylesheet">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esports Team</title>
-</head>
-
 <body>
     <main class="container mt-4">
         <h1>Please</h1>
@@ -30,7 +24,7 @@
             <input class="form-control" type="email" id="email" name="email">
 
            
-            <label for="phone" class="form-labelmt-3">Phone number</label>
+            <label for="phone" class="form-label mt-3">Phone number</label>
             <input type="tel" id="phone" name="phone" placeholder="555-123-4567" class="form-control">
 
             <label class="form-label mt-3" for="team">Team Name</label>
