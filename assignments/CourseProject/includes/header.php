@@ -1,5 +1,4 @@
-    <!DOCTYPE html>
-    <html lang="en">
+
 
     <head>
         <meta charset="UTF-8">
@@ -16,11 +15,19 @@
             <h1 class="site-title">
                 <img src="assets/headerImage.png" alt="Esports Team Manager" class="logo">
             </h1>
-            
-            <nav>
-                <a href="/"> Home </a>
-                <a href="#"> View Teams </a>
-                <a href="#"> Contact </a>
+            <!-- https://getbootstrap.com/docs/5.3/components/navbar/ i grabbed part of this nav bar code from bootstrap and tweaked it to fit my simple nav bar :)  -->
+            <nav class="navbar bg-body-tertiary mb-3">
+            <div class="container-fluid justify-content-center">
+                <ul class="navbar-nav flex-row">
+                <li class="nav-item me-4">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="players.php">View Teams</a>
+                </li>
+                </ul>
+            </div>
             </nav>
+
         </header>
     </body>

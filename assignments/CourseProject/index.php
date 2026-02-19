@@ -8,7 +8,7 @@
 <body>
     <main class="container mt-4">
         
-        <!-- Form input for player information -->
+        <!-- form input for player information -->
         <h1>Please Enter Your Player Information Here</h1>
 
         <form action="process.php" method="post" class="mt-3">
@@ -35,10 +35,11 @@
             <button class="btn btn-primary mt-4" type="submit">Submit</button>
         </form>
 
-        <p class="mt-4">
-            <a href="subscribers.php">View Subscribers</a>
-        </p>
     </main>
 </body>
 
 </html>
+
+<?php
+require "includes/footer.php";
+?>

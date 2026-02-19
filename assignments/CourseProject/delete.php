@@ -11,7 +11,7 @@ $playerId = $_GET['id'];
 $sql = "DELETE FROM players WHERE player_id = :player_id";
 
 // prepare sql statement
-$stmt = $db->prepare($sql);
+$stmt = $pdo->prepare($sql);
 
 // bind player id to query
 $stmt->bindParam(':player_id', $playerId);

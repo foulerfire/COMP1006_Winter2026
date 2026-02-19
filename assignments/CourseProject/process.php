@@ -1,4 +1,7 @@
 <?php
+    require "includes/header.php";
+?>
+<?php
 //script only runs when form is submitted using submit
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
@@ -23,7 +26,7 @@ if ($position === null || $position === '')
     $errors[] = "Position required";
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
     $errors[] = "Valid email required";
-if ($phone === null || $phone === '') 
+if ($phone === null || $phone === '')   
     $errors[] = "Phone number required";
 if ($team === null || $team === '') 
     $errors[] = "Team name required";
@@ -32,6 +35,13 @@ if (!empty($errors)) {
     foreach ($errors as $error) {
         echo "<p>$error</p>";
     }
+        echo '
+            <form action="index.php" method="get">
+                <button type="submit" class="btn btn-primary mt-4">
+                    Back to Form
+                </button>
+            </form>
+        ';
     exit;
 }
 
@@ -44,7 +54,7 @@ VALUES
 (:first, :last, :position, :email, :phone, :team)
 ";
 
-$stmt = $db->prepare($sql);
+$stmt = $pdo->prepare($sql);
 
 //bind player info
 $stmt->bindValue(':first', $firstName);
@@ -59,3 +69,4 @@ $stmt->execute();
 // redirect to list after player successfully added to database
 header("Location: players.php");
 exit;
+

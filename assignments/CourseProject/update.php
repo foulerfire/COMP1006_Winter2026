@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         WHERE player_id = :id
         ";
 
-        $stmt = $db->prepare($sql);
+        $stmt = $pdo->prepare($sql);
 
         // bind values to placeholders
         $stmt->bindValue(':first', $firstName);
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // load existing player data to pre-fill the form
 $sql = "SELECT * FROM players WHERE player_id = :id";
-$stmt = $db->prepare($sql);
+$stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $playerId, PDO::PARAM_INT);
 $stmt->execute();
 

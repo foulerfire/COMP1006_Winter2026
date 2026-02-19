@@ -10,10 +10,8 @@ require "includes/connect.php";
 // sql query to retrieve all players from databas
 $sql = "SELECT * FROM players";
 
-// Prepare the SQL statement
-$stmt = $db->prepare($sql);
-
-// Execute the prepared statement
+// prepare and exectue the sql statement
+$stmt = $pdo->prepare($sql);
 $stmt->execute();
 
 // fetch rows from the result as array
@@ -71,7 +69,7 @@ $players = $stmt->fetchAll();
                   Update
                 </a>
 
-                <!-- delete button sends player ID to delete.php with confirmation -->
+                <!-- delete button sends player ID to delete.php with confirmation message -->
                 <a
                   class="btn btn-sm btn-danger mt-2"
                   href="delete.php?id=<?= urlencode($player['player_id']); ?>"
@@ -92,6 +90,5 @@ $players = $stmt->fetchAll();
 </main>
 
 <?php
-// include site footer
 require "includes/footer.php";
 ?>
