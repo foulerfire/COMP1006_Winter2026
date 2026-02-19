@@ -55,3 +55,7 @@ $stmt->bindValue(':phone', $phone);
 $stmt->bindValue(':team', $team);
 
 $stmt->execute();
+
+// redirect to list after player successfully added to database
+header("Location: players.php");
+exit;
