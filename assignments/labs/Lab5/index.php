@@ -21,8 +21,8 @@
 
 2. A form needs special settings to upload a file properly because, without them, the browser will not encode the data in a way that PHP can read.
 
-3.The function used to move uploaded files to a folder is move_uploaded_file(), which takes the temporary location and moves it to a specific folder on the server.
+3. The function used to move uploaded files to a folder is move_uploaded_file(), which takes the temporary location and moves it to a specific folder on the server.
+4. It’s important to control where uploaded files are stored to keep the project secure and organized. Using a specific folder helps prevent files from being placed in an insecure location and makes it easier to access and manage the files later.
 
-4.It’s important to control where uploaded files are stored to keep the project secure and organized. Using a specific folder helps prevent files from being placed in an insecure location and makes it easier to access and manage the files later.
 --> 
 
