@@ -13,7 +13,7 @@
     <body>
         <header>
             <h1 class="site-title">
-                <img src="assets/headerImage.png" alt="Esports Team Manager" class="logo">
+                <img src="Assets/headerImage.png" alt="Esports Team Manager" class="logo">
             </h1>
             <!-- https://getbootstrap.com/docs/5.3/components/navbar/ i grabbed part of this nav bar code from bootstrap and tweaked it to fit my simple nav bar :)  -->
             <nav class="navbar bg-body-tertiary mb-3">
