@@ -3,9 +3,8 @@
 <?php
     require "includes/header.php";
 ?>
-<link href="styles/main.css" rel="stylesheet">
 
-<body>
+
     <main class="container mt-4">
         
         <!-- form input for player information -->
@@ -36,7 +35,7 @@
         </form>
 
     </main>
-</body>
+
 
 </html>
 

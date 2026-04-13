@@ -1,7 +1,4 @@
 <?php
-    require "includes/header.php";
-?>
-<?php
 //script only runs when form is submitted using submit
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
