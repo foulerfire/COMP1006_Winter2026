@@ -10,7 +10,7 @@
         <!-- form input for player information -->
         <h1>Please Enter Your Player Information Here</h1>
 
-        <form action="process.php" method="post" class="mt-3">
+        <form action="process.php" method="post" class="mt-3" enctype="multipart/form-data">
             <label class="form-label" for="first_name">First Name</label>
             <input class="form-control" type="text" id="first_name" name="first_name">
 
@@ -30,6 +30,9 @@
 
             <label class="form-label mt-3" for="team">Team Name</label>
             <input class="form-control" type="text" id="team" name="team">
+
+            <label class="form-label mt-3" for="teamLogo">Team Logo</label>
+            <input class="form-control" type="file" id="teamLogo" name="teamLogo">
 
             <button class="btn btn-primary mt-4" type="submit">Submit</button>
         </form>

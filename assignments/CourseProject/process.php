@@ -1,5 +1,5 @@
 <?php
-//script only runs when form is submitted using submit
+// script only runs when form is submitted using submit
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
 }
@@ -12,7 +12,7 @@ $email     = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $phone     = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS);
 $team      = filter_input(INPUT_POST, 'team', FILTER_SANITIZE_SPECIAL_CHARS);
 
-// validat user input on server
+// validate user input on server
 $errors = [];
 
 if ($firstName === null || $firstName === '') 
@@ -27,43 +27,70 @@ if ($phone === null || $phone === '')
     $errors[] = "Phone number required";
 if ($team === null || $team === '') 
     $errors[] = "Team name required";
+
 // loops through all errors that occured
 if (!empty($errors)) {
     foreach ($errors as $error) {
         echo "<p>$error</p>";
     }
-        echo '
-            <form action="index.php" method="get">
-                <button type="submit" class="btn btn-primary mt-4">
-                    Back to Form
-                </button>
-            </form>
-        ';
+    echo '
+        <form action="index.php" method="get">
+            <button type="submit" class="btn btn-primary mt-4">
+                Back to Form
+            </button>
+        </form>
+    ';
     exit;
 }
 
+// connect to database
 require "includes/connect.php";
-//insert player data in to table
+
+
+// file upload
+// default logo if no file uploaded
+$teamLogo = null;
+
+// check if user selected a file
+if (!empty($_FILES['teamLogo']['name'])) {
+
+    // store file info in a variable
+    $file = $_FILES['teamLogo'];
+
+    // get file name and temp location
+    $fileName = $file['name'];
+    $tempName = $file['tmp_name'];
+
+    // set upload path
+    $uploadPath = __DIR__ . "/uploads/" . $fileName;
+
+    // move file from temp folder to uploads folder
+    if (move_uploaded_file($tempName, $uploadPath)) {
+        $teamLogo = $fileName;
+    }
+}
+
+// insert player data into table
 $sql = "
 INSERT INTO players
-(first_name, last_name, position, email, phone, team_name)
+(first_name, last_name, position, email, phone, team_name, team_logo)
 VALUES
-(:first, :last, :position, :email, :phone, :team)
+(:first, :last, :position, :email, :phone, :team, :team_logo)
 ";
 
 $stmt = $pdo->prepare($sql);
 
-//bind player info
+// bind player info
 $stmt->bindValue(':first', $firstName);
 $stmt->bindValue(':last', $lastName);
 $stmt->bindValue(':position', $position);
 $stmt->bindValue(':email', $email);
 $stmt->bindValue(':phone', $phone);
 $stmt->bindValue(':team', $team);
+$stmt->bindValue(':team_logo', $teamLogo);
 
 $stmt->execute();
 
 // redirect to list after player successfully added to database
 header("Location: players.php");
 exit;
-

@@ -60,7 +60,15 @@ $players = $stmt->fetchAll();
               <td><?= htmlspecialchars($player['email']); ?></td>
               <td><?= htmlspecialchars($player['phone']); ?></td>
               <td><?= htmlspecialchars($player['team_name']); ?></td>
-
+              
+              <td>
+                  <?php if (!empty($player['team_logo'])): ?>
+                      <img src="uploads/<?= htmlspecialchars($player['team_logo']); ?>" alt="Team Logo" width="100">
+                  <?php else: ?>
+                      No Logo
+                  <?php endif; ?>
+              </td>
+              
               <td>
                 <!-- update button sends player to update.php through URL -->
                 <a
