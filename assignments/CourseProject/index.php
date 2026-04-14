@@ -31,8 +31,8 @@
             <label class="form-label mt-3" for="team">Team Name</label>
             <input class="form-control" type="text" id="team" name="team">
 
-            <label class="form-label mt-3" for="teamLogo">Team Logo</label>
-            <input class="form-control" type="file" id="teamLogo" name="teamLogo">
+            <label class="form-label mt-3" for="playerPhoto">Player Photo</label>
+            <input class="form-control" type="file" id="playerPhoto" name="playerPhoto">
 
             <button class="btn btn-primary mt-4" type="submit">Submit</button>
         </form>

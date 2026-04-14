@@ -48,14 +48,13 @@ require "includes/connect.php";
 
 
 // file upload
-// default logo if no file uploaded
-$teamLogo = null;
+// default image if no file uploaded
+$playerPhoto = null;
 
 // check if user selected a file
-if (!empty($_FILES['teamLogo']['name'])) {
+if (!empty($_FILES['playerPhoto']['name'])) {
 
-    // store file info in a variable
-    $file = $_FILES['teamLogo'];
+    $file = $_FILES['playerPhoto'];
 
     // get file name and temp location
     $fileName = $file['name'];
@@ -63,19 +62,20 @@ if (!empty($_FILES['teamLogo']['name'])) {
 
     // set upload path
     $uploadPath = __DIR__ . "/uploads/" . $fileName;
-
     // move file from temp folder to uploads folder
+
     if (move_uploaded_file($tempName, $uploadPath)) {
-        $teamLogo = $fileName;
+        $playerPhoto = $fileName;
     }
 }
+ 
 
 // insert player data into table
 $sql = "
 INSERT INTO players
-(first_name, last_name, position, email, phone, team_name, team_logo)
+(first_name, last_name, position, email, phone, team_name, player_photo)
 VALUES
-(:first, :last, :position, :email, :phone, :team, :team_logo)
+(:first, :last, :position, :email, :phone, :team, :player_photo)
 ";
 
 $stmt = $pdo->prepare($sql);
@@ -87,7 +87,7 @@ $stmt->bindValue(':position', $position);
 $stmt->bindValue(':email', $email);
 $stmt->bindValue(':phone', $phone);
 $stmt->bindValue(':team', $team);
-$stmt->bindValue(':team_logo', $teamLogo);
+$stmt->bindValue(':player_photo', $playerPhoto);
 
 $stmt->execute();
 

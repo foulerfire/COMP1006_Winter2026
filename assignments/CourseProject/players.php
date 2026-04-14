@@ -37,7 +37,7 @@ $players = $stmt->fetchAll();
             <th>Email</th>
             <th>Phone</th>
             <th>Team</th>
-            <th>Actions</th>
+            <th>Photo</th>
           </tr>
         </thead>
 
@@ -60,12 +60,12 @@ $players = $stmt->fetchAll();
               <td><?= htmlspecialchars($player['email']); ?></td>
               <td><?= htmlspecialchars($player['phone']); ?></td>
               <td><?= htmlspecialchars($player['team_name']); ?></td>
-              
+              <!-- output player photo -->
               <td>
-                  <?php if (!empty($player['team_logo'])): ?>
-                      <img src="uploads/<?= htmlspecialchars($player['team_logo']); ?>" alt="Team Logo" width="100">
+                  <?php if (!empty($player['player_photo'])): ?>
+                      <img src="uploads/<?= htmlspecialchars($player['player_photo']); ?>" width="100">
                   <?php else: ?>
-                      No Logo
+                      No Photo
                   <?php endif; ?>
               </td>
               
