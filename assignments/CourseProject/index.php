@@ -4,7 +4,6 @@
     require "includes/header.php";
 ?>
 
-
     <main class="container mt-4">
         
         <!-- form input for player information -->
@@ -20,11 +19,9 @@
             <label class="form-label mt-3" for="position">Position</label>
             <input class="form-control" type="text" id="position" name="position">
 
-
             <label class="form-label mt-3" for="email">Email Address</label>
             <input class="form-control" type="email" id="email" name="email">
 
-           
             <label for="phone" class="form-label mt-3">Phone number</label>
             <input type="tel" id="phone" name="phone" placeholder="555-123-4567" class="form-control">
 
@@ -38,7 +35,6 @@
         </form>
 
     </main>
-
 
 </html>
 
