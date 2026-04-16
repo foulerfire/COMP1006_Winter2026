@@ -37,6 +37,7 @@ $players = $stmt->fetchAll();
             <th>Phone</th>
             <th>Team</th>
             <th>Photo</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -69,7 +70,7 @@ $players = $stmt->fetchAll();
               </td>
               
               <td>
-                <!-- update button sends player to update.php through URL -->
+                <!-- update button sends player to update.php -->
                 <a
                   class="btn btn-sm btn-warning"
                   href="update.php?id=<?= urlencode($player['player_id']); ?>">

@@ -29,7 +29,7 @@ if (!$player) {
     die("Player not found.");
 }
 
-// if form is submitted, update the player
+// if form is submitted update the player
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // sanitize user input
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone     = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS);
     $team      = filter_input(INPUT_POST, 'team', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    // keep current player photo unless a new one is uploaded
+    // keep current player photo unless new one is uploaded
     $playerPhoto = $player['player_photo'];
 
     // check if user selected a new photo

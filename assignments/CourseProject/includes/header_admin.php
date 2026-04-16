@@ -14,7 +14,11 @@
         <h1 class="site-title">
             <img src="Assets/headerImage.png" alt="Esports Team Manager" class="logo">
         </h1>
-
+        <li class="nav-item me-4">
+            <span class="nav-link">
+                Welcome <?= htmlspecialchars($_SESSION['username']); ?>
+            </span>
+        </li>
         <nav class="navbar bg-body-tertiary mb-3">
             <div class="container-fluid justify-content-center">
                 <ul class="navbar-nav flex-row">

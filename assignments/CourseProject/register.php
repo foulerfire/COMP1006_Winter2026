@@ -1,13 +1,14 @@
 <?php
-
+// include database connection
 require "includes/connect.php";
 
+// include site header
 require "includes/header.php";
 
-// array to store errors
+// array to store validation errors
 $errors = [];
 
-// variable for success message
+// variable to store success message
 $success = "";
 
 // check if form was submitted
@@ -20,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // passwordsnot sanitized because special characters may be part of password
     $password = $_POST['password'] ?? '';
     $confirmPassword = $_POST['confirm_password'] ?? '';
+    $captchaResponse = $_POST['g-recaptcha-response'] ?? '';
 
     // validate username
     if ($username === '') {
@@ -50,7 +52,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Password must be at least 8 characters long.";
     }
 
-    // only check database if there are no validation errors
+    // check that recaptcha done
+    if ($captchaResponse === '') {
+        $errors[] = "Please complete the reCAPTCHA.";
+    }
+
+    // verify recaptcha with Google
+    if (empty($errors)) {
+        $secretKey = "6Len3bosAAAAAOmJefOS0tQEayvWjzhwHLpC-6g5";
+
+
+        $verifyResponse = file_get_contents(
+            "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captchaResponse"
+        );  
+
+        $captchaSuccess = json_decode($verifyResponse, true);
+
+        if (!$captchaSuccess['success']) {
+            $errors[] = "reCAPTCHA verification failed. Please try again.";
+        }
+    }
+
+    // only check database if no validation errors
     if (empty($errors)) {
         $sql = "SELECT id FROM users WHERE username = :username OR email = :email";
         $stmt = $pdo->prepare($sql);
@@ -59,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
 
         if ($stmt->fetch()) {
-            $errors[] = "Username or email has already been used!";
+            $errors[] = "That username or email has already been used!";
         }
     }
 
@@ -78,7 +101,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!-- form stuff -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
 <main class="container mt-4">
     <h2>Register</h2>
 
@@ -136,9 +165,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             type="password"
             id="confirm_password"
             name="confirm_password"
-            class="form-control mb-4"
+            class="form-control mb-3"
             required
         >
+
+        <div class="g-recaptcha mb-3" data-sitekey="6Len3bosAAAAAMgduGWSVYY97RG-ja5j4O9ROIES"></div>
 
         <button type="submit" class="btn btn-primary">Create Account</button>
         <a href="login.php" class="btn btn-secondary">Login Instead</a>
