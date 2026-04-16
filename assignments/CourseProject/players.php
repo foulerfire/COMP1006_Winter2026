@@ -1,19 +1,18 @@
-<?php
-// displays list of all team members stored in database. Each player can be updated or deleted using the buttons
- 
-// site header
-require "includes/header.php";
 
-// database connection 
+
+ <?php
+// displays list of all team members stored in database. Each player can be updated or deleted using the buttons
+// site header and authentication
+require "includes/auth.php";
+require "includes/header_admin.php";
 require "includes/connect.php";
 
+$userId = $_SESSION['user_id'];
 // sql query to retrieve all players from databas
-$sql = "SELECT * FROM players";
-
-// prepare and exectue the sql statement
+$sql = "SELECT * FROM players WHERE user_id = :user_id";
 $stmt = $pdo->prepare($sql);
+$stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
 $stmt->execute();
-
 // fetch rows from the result as array
 $players = $stmt->fetchAll();
 ?>
@@ -94,7 +93,7 @@ $players = $stmt->fetchAll();
   <?php endif; ?>
 
   <!-- link back to form to add new player -->
-  <a class="btn btn-secondary" href="index.php">Add New Player</a>
+  <a class="btn btn-secondary" href="add_player.php">Add New Player</a>
 </main>
 
 <?php

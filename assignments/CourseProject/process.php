@@ -1,4 +1,7 @@
 <?php
+
+require "includes/auth.php";
+
 // script only runs when form is submitted using submit
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
@@ -46,7 +49,6 @@ if (!empty($errors)) {
 // connect to database
 require "includes/connect.php";
 
-
 // file upload
 // default image if no file uploaded
 $playerPhoto = null;
@@ -62,20 +64,21 @@ if (!empty($_FILES['playerPhoto']['name'])) {
 
     // set upload path
     $uploadPath = __DIR__ . "/uploads/" . $fileName;
-    // move file from temp folder to uploads folder
 
+    // move file from temp folder to uploads folder
     if (move_uploaded_file($tempName, $uploadPath)) {
         $playerPhoto = $fileName;
     }
 }
- 
+
+$userId = $_SESSION['user_id'];
 
 // insert player data into table
 $sql = "
 INSERT INTO players
-(first_name, last_name, position, email, phone, team_name, player_photo)
+(first_name, last_name, position, email, phone, team_name, player_photo, user_id)
 VALUES
-(:first, :last, :position, :email, :phone, :team, :player_photo)
+(:first, :last, :position, :email, :phone, :team, :player_photo, :user_id)
 ";
 
 $stmt = $pdo->prepare($sql);
@@ -88,7 +91,7 @@ $stmt->bindValue(':email', $email);
 $stmt->bindValue(':phone', $phone);
 $stmt->bindValue(':team', $team);
 $stmt->bindValue(':player_photo', $playerPhoto);
-
+$stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
 $stmt->execute();
 
 // redirect to list after player successfully added to database

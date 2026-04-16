@@ -1,43 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php
-    require "includes/header.php";
-?>
+<?php require "includes/header.php"; ?>
 
-    <main class="container mt-4">
-        
-        <!-- form input for player information -->
-        <h1>Please Enter Your Player Information Here</h1>
+<main class="container mt-5 text-center">
+    <h1>Welcome to Esports Team Manager</h1>
+    <p class="mt-3">Please login or create an account to manage your team.</p>
 
-        <form action="process.php" method="post" class="mt-3" enctype="multipart/form-data">
-            <label class="form-label" for="first_name">First Name</label>
-            <input class="form-control" type="text" id="first_name" name="first_name">
+    <div class="mt-4">
+        <a href="login.php" class="btn btn-primary me-3">Login</a>
+        <a href="register.php" class="btn btn-secondary">Register</a>
+    </div>
+</main>
 
-            <label class="form-label mt-3" for="last_name">Last Name</label>
-            <input class="form-control" type="text" id="last_name" name="last_name">
-
-            <label class="form-label mt-3" for="position">Position</label>
-            <input class="form-control" type="text" id="position" name="position">
-
-            <label class="form-label mt-3" for="email">Email Address</label>
-            <input class="form-control" type="email" id="email" name="email">
-
-            <label for="phone" class="form-label mt-3">Phone number</label>
-            <input type="tel" id="phone" name="phone" placeholder="555-123-4567" class="form-control">
-
-            <label class="form-label mt-3" for="team">Team Name</label>
-            <input class="form-control" type="text" id="team" name="team">
-
-            <label class="form-label mt-3" for="playerPhoto">Player Photo</label>
-            <input class="form-control" type="file" id="playerPhoto" name="playerPhoto">
-
-            <button class="btn btn-primary mt-4" type="submit">Submit</button>
-        </form>
-
-    </main>
-
-</html>
-
-<?php
-require "includes/footer.php";
-?>
+<?php require "includes/footer.php"; ?>

@@ -1,8 +1,9 @@
 <?php
 // update player information in database using player id
+require "includes/auth.php";
 
 // site header
-require "includes/header.php";
+require "includes/header_admin.php";
 
 // database connection
 require "includes/connect.php";
@@ -13,6 +14,20 @@ if (!isset($_GET['id'])) {
 }
 
 $playerId = $_GET['id'];
+$userId = $_SESSION['user_id'];
+
+// load existing player data to pre-fill the form
+$sql = "SELECT * FROM players WHERE player_id = :id AND user_id = :user_id";
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':id', $playerId, PDO::PARAM_INT);
+$stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+$stmt->execute();
+
+$player = $stmt->fetch();
+
+if (!$player) {
+    die("Player not found.");
+}
 
 // if form is submitted, update the player
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -25,9 +40,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone     = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS);
     $team      = filter_input(INPUT_POST, 'team', FILTER_SANITIZE_SPECIAL_CHARS);
 
+    // keep current player photo unless a new one is uploaded
+    $playerPhoto = $player['player_photo'];
+
+    // check if user selected a new photo
+    if (!empty($_FILES['playerPhoto']['name'])) {
+
+        $file = $_FILES['playerPhoto'];
+
+        // get file name and temp location
+        $fileName = $file['name'];
+        $tempName = $file['tmp_name'];
+
+        // set upload path
+        $uploadPath = __DIR__ . "/uploads/" . $fileName;
+
+        // move file from temp folder to uploads folder
+        if (move_uploaded_file($tempName, $uploadPath)) {
+            $playerPhoto = $fileName;
+        }
+    }
+
     // validation
-    if ( $firstName === '' || $firstName === null || $lastName === ''  || $lastName === null  || !filter_var($email, FILTER_VALIDATE_EMAIL)) 
-    {
+    if ($firstName === '' || $firstName === null || $lastName === '' || $lastName === null || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "First name, last name, and a valid email are required.";
     } else {
         // sql update statement
@@ -38,8 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             position = :position,
             email = :email,
             phone = :phone,
-            team_name = :team
-        WHERE player_id = :id
+            team_name = :team,
+            player_photo = :player_photo
+        WHERE player_id = :id AND user_id = :user_id
         ";
 
         $stmt = $pdo->prepare($sql);
@@ -51,7 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindValue(':email', $email);
         $stmt->bindValue(':phone', $phone);
         $stmt->bindValue(':team', $team);
+        $stmt->bindValue(':player_photo', $playerPhoto);
         $stmt->bindValue(':id', $playerId, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
 
         $stmt->execute();
 
@@ -59,18 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: players.php");
         exit;
     }
-}
-
-// load existing player data to pre-fill the form
-$sql = "SELECT * FROM players WHERE player_id = :id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindValue(':id', $playerId, PDO::PARAM_INT);
-$stmt->execute();
-
-$player = $stmt->fetch();
-
-if (!$player) {
-    die("Player not found.");
 }
 ?>
 
@@ -82,7 +108,7 @@ if (!$player) {
     <?php endif; ?>
 
     <!-- form pre-filled with player data from database -->
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
 
         <label class="form-label">First Name</label>
         <input
@@ -132,9 +158,22 @@ if (!$player) {
         <input
             type="text"
             name="team"
-            class="form-control mb-4"
+            class="form-control mb-3"
             value="<?= htmlspecialchars($player['team_name']); ?>"
             required
+        >
+
+        <!-- show current player photo if one exists -->
+        <?php if (!empty($player['player_photo'])): ?>
+            <label class="form-label">Current Photo</label><br>
+            <img src="uploads/<?= htmlspecialchars($player['player_photo']); ?>" alt="Player Photo" width="100" class="mb-3">
+        <?php endif; ?>
+
+        <label class="form-label">Update Player Photo</label>
+        <input
+            type="file"
+            name="playerPhoto"
+            class="form-control mb-4"
         >
 
         <button class="btn btn-primary">Save Changes</button>

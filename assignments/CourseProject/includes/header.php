@@ -23,10 +23,8 @@
                 <li class="nav-item me-4">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="players.php">View Teams</a>
-                </li>
-                </ul>
+
+                
             </div>
             </nav>
 
