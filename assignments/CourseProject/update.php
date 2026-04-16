@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file = $_FILES['playerPhoto'];
 
         // get file name and temp location
-        $fileName = $file['name'];
+        $fileName = time() . "_" . $file['name'];  // learned this from https://stackoverflow.com/questions/43769053/adding-current-time-to-filename-of-image-in-php
         $tempName = $file['tmp_name'];
 
         // set upload path
